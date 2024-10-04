@@ -1,10 +1,11 @@
 /*
-* M5Dial_NTP_quality_check.ino
+* M5Dial_NTP_local_time.ino
 * Version 1.0
+* 2025-10-04 by @PaulskPt (Github)
 *
 * Example by Microsoft CoPilot
 * after my question to CoPilot: c++ how to know if time from NTP is correct.
-* Added some functionality to run on a M5Stack MDial
+* Added functionality to run on a M5Stack MDial
 */
 
 #include <M5Dial.h>
@@ -84,8 +85,8 @@ void setRTC(struct tm timeinfo) {
 }
 
 void start_scrn(void) {
-  static const char* txt[] = { "NTP qual ck", "by Paulus", "Github", "@PaulskPt" };
-  static const int char_width_in_pixels[] = { 12, 12, 12, 14 };
+  static const char* txt[] = { "NTP local time", "by Paulus", "Github", "@PaulskPt" };
+  static const int char_width_in_pixels[] = { 11, 12, 12, 14 };
   int vert2[] = { 0, 60, 90, 120, 150 };
   int x = 0;
 
@@ -99,10 +100,7 @@ void start_scrn(void) {
     M5Dial.Display.setCursor(x, vert2[i + 1]);
     M5Dial.Display.println(txt[i]);
   }
-
-  //delay(5000);
   M5Dial.Display.setTextColor(YELLOW, BLACK);
-  //M5Dial.Display.setFont(&fonts::FreeSans12pt7b); // was: efontCN_14);
 }
 
 void getID(void) {
@@ -186,7 +184,6 @@ void setup() {
   getID();
 
   std::cout << "M5Stack M5Dial display width = " << std::to_string(dw) << ", height = " << std::to_string(dh) << std::endl;
-
 
   if (!M5Dial.Rtc.isEnabled())
   {
