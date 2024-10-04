@@ -1,0 +1,325 @@
+2024-10-04 14h07 utc+1
+
+Board: M5Stack M5Dial
+
+Arduino IDE v2.3.3
+
+Sketch: M5Dial_NTP_quality_check.inu 
+Version 1.0
+
+Monitor output:
+
+
+Connecting to Vodafone-8D96F1
+................
+WiFi connected.
+IP address: 
+192.168.1.196
+calc_diff(): NTP Time:    Thu Jan  1 01:00:09 1970
+             System Time: Fri Oct  4 14:27:29 2024
+             Offset:      -1.72805e+09 second(s)
+Time is not synchronized.
+setRTC(): value received param timeinfo: 1970-01-01 01:00:09
+System Time (built-in RTC) synchronized with NTP time
+
+loop(); elapsed_t = 8274 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 4 Minute(s)
+
+loop(); elapsed_t = 120000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 3 Minute(s)
+
+loop(); elapsed_t = 120000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 3 Minute(s)
+
+loop(); elapsed_t = 180000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 2 Minute(s)
+
+loop(); elapsed_t = 180000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 2 Minute(s)
+
+loop(); elapsed_t = 240000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 1 Minute(s)
+
+loop(); elapsed_t = 240000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 1 Minute(s)
+
+loop(); elapsed_t = 300000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 0 Minute(s)
+calc_diff(): NTP Time:    Fri Oct  4 14:32:28 2024
+             System Time: Fri Oct  4 14:32:28 2024
+             Offset:      0 second(s)
+Time is synchronized.
+
+[...] etcetera...
+
+---------------------------------------------------------------------
+
+
+
+loop(); elapsed_t = 300000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 0 Minute(s)
+
+loop(); elapsed_t = 300000 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 0 Minute(s)
+calc_diff(): NTP Time:    Fri Oct  4 14:37:28 2024
+             System Time: Fri Oct  4 14:37:28 2024
+             Offset:      0 second(s)
+Time is synchronized.
+
+------------------------------------------------------------------------
+Monitor output after some changes in the sketch:
+------------------------------------------------------------------------
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:00:55
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:00:58
+calc_diff(): NTP Time:    Fri Oct  4 16:01:01 2024
+             System Time: Fri Oct  4 16:01:00 2024
+             Offset:      1 second(s)
+Time is not synchronized.
+setRTC(): value received param timeinfo: 2024-10-04 16:01:01
+System Time (built-in RTC) synchronized with NTP time
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:01:01
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:01:03
+
+[...]
+
+-------------------------------------------------------------------------
+After some other very small changes (added \n)
+-------------------------------------------------------------------------
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:13:20
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:13:23
+
+calc_diff(): NTP Time:    Fri Oct  4 16:13:26 2024
+             System Time: Fri Oct  4 16:13:25 2024
+             Offset:      1 second(s)
+Time is not synchronized.
+
+setRTC(): value received param timeinfo: 2024-10-04 16:13:26
+System Time (built-in RTC) synchronized with NTP time
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:13:25
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:13:28
+-------------------------------------------------------------------------
+
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420ad88e
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x44c
+load:0x403c9700,len:0xbd8
+load:0x403cc700,len:0x2a80
+entry 0x403c98d0
+M5Stack M5Dial display width = 240, height = 240
+
+ESP32 Chip ID = C4C2537C5824
+chipid mirrored (same as M5Burner MAC): 24:58:7C:53:C2:C4
+
+M5Stack M5Dial NTP quality check test V1.0.
+Connecting to Vodafone-8D96F1
+......
+WiFi connected.
+IP address: 
+192.168.1.196
+
+calc_diff(): NTP Time:    Fri Oct  4 16:21:24 2024
+             System Time: Fri Oct  4 16:21:23 2024
+             Offset:      1 second(s)
+Time is not synchronized.                                         <<<=== Here the tolerance was < 1 second. I changed this (below) to < 2 seconds.
+
+setRTC(): value received param timeinfo: 2024-10-04 16:21:24
+System Time (built-in RTC) synchronized with NTP time
+
+
+loop(): elapsed_t = 3275 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 4 Minute(s)
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:21:24
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:21:27
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:26:18
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:26:21
+
+calc_diff(): NTP Time:    Fri Oct  4 16:26:24 2024
+             System Time: Fri Oct  4 16:26:23 2024
+             Offset:      1 second(s)
+Time is not synchronized.
+
+setRTC(): value received param timeinfo: 2024-10-04 16:26:24
+System Time (built-in RTC) synchronized with NTP time
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:26:23
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:26:26
+
+[...]
+
+----------------------------------------------------------------
+After some code changes in loop() regarding the msg timing:
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:40:41
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:40:44
+
+loop(): elapsed_t = 62018 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 3 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:40:47
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:40:50
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:41:43
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:41:45
+
+loop(): elapsed_t = 123869 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 2 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:41:49
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:41:52
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:42:45
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:42:47
+
+loop(): elapsed_t = 185721 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 1 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:42:51
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:42:53
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:43:47
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:43:49
+
+loop(): elapsed_t = 247572 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 0 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:43:53
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:43:55
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:41
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:43
+
+calc_diff(): NTP Time:    Fri Oct  4 16:44:46 2024
+             System Time: Fri Oct  4 16:44:45 2024
+             Offset:      1 second(s)
+Time is not synchronized.
+
+setRTC(): value received param timeinfo: 2024-10-04 16:44:46
+System Time (built-in RTC) synchronized with NTP time
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:46
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:49
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:51
+
+loop(): elapsed_t = 7683 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 4 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:55
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:44:57
+
+[...]
+
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:49:43
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:49:45
+
+calc_diff(): NTP Time:    Fri Oct  4 16:49:48 2024
+             System Time: Fri Oct  4 16:49:47 2024
+             Offset:      1 second(s)
+Time is not synchronized.
+
+setRTC(): value received param timeinfo: 2024-10-04 16:49:48
+System Time (built-in RTC) synchronized with NTP time
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:49:48
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 16:49:50
+
+[...]
+
+------------------------------------------------------
+In function calc_diff() I changed the tolerance from 1 second to 2 seconds.
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:09
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:11
+
+calc_diff(): NTP Time:    Fri Oct  4 17:04:14 2024
+             System Time: Fri Oct  4 17:04:13 2024
+             Offset:      1 second(s)
+Time is synchronized.
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:14
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:17
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:19
+
+loop(): elapsed_t = 7650 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 4 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:23
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:04:25
+
+-----------------------------------------------------------
+After adding \n in std::cout stream in function calc_diff():
+-----------------------------------------------------------
+
+......
+WiFi connected.
+IP address: 
+192.168.1.196
+
+calc_diff(): NTP Time:    Fri Oct  4 17:09:39 2024
+             System Time: Fri Oct  4 17:09:38 2024
+             Offset:      1 second(s)
+Time is synchronized.
+
+
+loop(): elapsed_t = 3275 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 4 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:09:39
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:09:42
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:14:35
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:14:37
+
+calc_diff(): NTP Time:    Fri Oct  4 17:14:40 2024
+             System Time: Fri Oct  4 17:14:39 2024    
+             Offset:      1 second(s)
+Time is synchronized.                                             <<<=== Tolerance of 1 second now accepted as being synchronized!
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:14:40
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:14:42
+
+[...]
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:37
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:39
+
+calc_diff(): NTP Time:    Fri Oct  4 17:19:42 2024
+             System Time: Fri Oct  4 17:19:41 2024
+             Offset:      1 second(s)
+Time is synchronized.
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:42
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:44
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:47
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:49
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:52
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:54
+
+loop(): elapsed_t = 15263 Second(s), interval_t = 300000 Second(s)
+Next NTP check in: 4 Minute(s)
+
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:19:58
+poll_RTC(): ESP32 local time: 2024-10-04 (Fri) 17:20:00
+
+[...]
+
