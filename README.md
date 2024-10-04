@@ -17,7 +17,7 @@ Reset:
 Pressing the button (of the display) will cause a software reset.
 
 On reset the Arduino Sketch will try to connect to the WiFi Access Point of your choice (set in secret.h). If successful the sketch will next connect to a NTP server of your choice, then download the current datetime stamp. If successful, the built-in RTC will be synchronized with the NTP datetime stamp.
-Next every 5 minutes the built-in RTC will be updated from a fetched NTP datetime, if the time of the built-in RTC and the time from the NTP server differ less than 2 seconds (tolerance).
+Next every 5 minutes the built-in RTC will be updated from a fetched NTP datetime, if the time of the built-in RTC and the time from the NTP server differ 2 or more seconds (tolerance).
 
 File secret.h:
 
